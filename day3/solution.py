@@ -7,7 +7,7 @@ input_file = Path(current_dir, "input.txt")
 text = input_file.read_text()
 
 def parse(text):
-    instr = re.findall(r"(mul\(\d+\,\d+\)|do\(\)|don't\(\))", text)
+    instr = re.findall(r"(mul\(\d{1,3}\,\d{1,3}\)|do\(\)|don't\(\))", text)
     res = []
     for t in instr:
         op, rest = t.split("(")
