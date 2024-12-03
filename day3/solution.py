@@ -6,6 +6,7 @@ input_file = Path(current_dir, "input.txt")
 
 text = input_file.read_text()
 
+
 def parse(text):
     instr = re.findall(r"(mul\(\d{1,3}\,\d{1,3}\)|do\(\)|don't\(\))", text)
     res = []
@@ -15,8 +16,10 @@ def parse(text):
 
     return res
 
+
 def part1():
     return sum(t[1] * t[2] for t in parse(text) if t[0] == "mul")
+
 
 def part2():
     enabled, tot = True, 0
@@ -29,5 +32,7 @@ def part2():
 
     return tot
 
+
 print(part1())
 print(part2())
+
