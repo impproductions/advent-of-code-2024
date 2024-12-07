@@ -8,7 +8,7 @@ defmodule Solution do
 end
 
 eqs =
-  File.read!("input.txt")
+  File.read!("example1.txt")
   |> String.split("\n")
   |> Enum.map(&String.split(&1, [": ", " "]))
   |> Enum.map(fn ls -> Enum.map(ls, &String.to_integer/1) end)
