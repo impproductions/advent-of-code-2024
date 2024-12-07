@@ -22,8 +22,8 @@ lines =
   |> String.split("\n")
 
 map =
-  for {line, y} <- Enum.with_index(lines),
-      {char, x} <- Enum.with_index(String.graphemes(line)),
+  for {line, y} <- Stream.with_index(lines),
+      {char, x} <- Stream.with_index(String.graphemes(line)),
       into: %{},
       do: {{x, y}, char}
 
@@ -44,16 +44,16 @@ patterns2 = [
 ]
 
 map
-|> Enum.filter(fn {_, val} -> val == "X" end)
-|> Enum.map(fn {{x, y}, _} ->
+|> Stream.filter(fn {_, val} -> val == "X" end)
+|> Stream.map(fn {{x, y}, _} ->
   Enum.count(patterns1, &Solution.is({x, y}, &1, "XMAS", map, false))
 end)
 |> Enum.sum()
 |> IO.inspect(label: "p1")
 
 map
-|> Enum.filter(fn {_, val} -> val == "A" end)
-|> Enum.map(fn {{x, y}, _} ->
+|> Stream.filter(fn {_, val} -> val == "A" end)
+|> Stream.map(fn {{x, y}, _} ->
   (Enum.all?(patterns2, &Solution.is({x, y}, &1, "MAS", map, true)) && 1) || 0
 end)
 |> Enum.sum()
