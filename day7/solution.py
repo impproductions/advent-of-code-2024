@@ -25,7 +25,7 @@ def part1():
 
 
 def part2():
-    cat = lambda nums: int(str(nums[0]) + str(nums[1]))
+    cat = lambda nums: int(f"{nums[0]}{nums[1]}")
     return sum(
         res for res, xpr in tests.items() if eqs(res, xpr, [sum, prod, cat], xpr[0], 0)
     )
